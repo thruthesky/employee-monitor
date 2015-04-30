@@ -1,0 +1,104 @@
+How To Install
+----------------------------------------
+
+	- Install PHP at C:\Program files\php
+	
+		; Be sure you install a proper version for the OS. Like "Win32-VC6-php....zip" (Ex: php-5.2.17-nts-Win32-VC6-x86.zip)
+	
+	- Copy "this folder" to C:\Program Files\php.
+	
+		; Copy the source script folder of this project into C:\Program Files\php
+
+        
+	- php.ini configuration
+	
+		; copy php.ini-recommended c:\windows\php.ini
+		; Edit: extension_dir = "c:\Program Files\PHP\ext"
+		; Uncomment "php_gd2" in php.ini
+		; 
+	
+	- php script configuration
+	
+		; edit $username
+		; edit ftp informatoin
+		
+		
+        
+TEST
+---------------------------------------
+This chapter explains how to test.
+
+	TEST 1)
+	
+		RUN "sc" in C:\Program Fils\PHP\sc
+		
+		
+		and see if it's working.
+		
+                
+                
+                
+                    
+TROUBLE SHOOTING
+-----------------------------------------
+
+        3. If it's not working, check FTP connection is ok. If not, unset firewall of FTP.
+        
+            in Windows XP, it looks to be blocked in firewall even if it's not. check with WinSCP with Normal FTP Port.
+            
+        
+        
+TASK SCHEDULER
+-----------------------------------------
+
+        4. Add in "Task Scheduler"
+		
+					Windows XP: 
+					-----------
+					
+					    Easy Way) Copy SC.job To "Tak Schedule" Folder. And check if it's work. if not, check "Run as"
+					
+					
+					
+					    Control Panel -> Perfomance and Maintenance -> Schedule Task -> File -> New -> Enter "SC" -> Dobule Click it.
+					    
+					    
+					        Task Tab :
+					    
+					            Run: c:\php\sc\hstart.exe /NOCONSOLE "c:\php\php.exe c:\php\sc\sc.php"
+            					Check: "Run only if logged on"
+            					Check: Enabled
+    	        				
+    				
+    					        It should say "Every 1 minutes From 12AM for 24 hours"
+					
+					
+					Windows 7 :
+					-----------
+					
+					    Easy Way) Import SC.xml into "Tak Schedule". And check if it's work. if not, check "Run as"
+					    
+						General:
+						
+						        Check: "Run only when user is logged on"
+						        Select: "Start a Program"
+						        Check: "Hidden"
+						        Select:  Configure for Windows 7
+						        
+						Action:
+						        Program/script: c:\php\sc\hstart.exe
+						        Add argument: /NOCONSOLE "c:\php\php.exe c:\php\sc\sc.php"
+						        Start in: c:\php\sc
+						        
+						
+						Trigger:
+    						Schedule It should say "Every 1minutes From 12AM for 24 hours"
+						
+        5. Test it every 1 minutes first.
+        
+        
+        6. Set it every 1 or 2 minutes.
+		
+        
+        
+        
