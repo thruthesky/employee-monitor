@@ -1,19 +1,20 @@
 How To Install
 ----------------------------------------
 
-	- Install PHP at C:\Program files\php
+	- Install PHP at C:\em\php
 	
 		; Be sure you install a proper version for the OS. Like "Win32-VC6-php....zip" (Ex: php-5.2.17-nts-Win32-VC6-x86.zip)
 	
-	- Copy "this folder" to C:\Program Files\php.
+	- Copy "this folder" to C:\em\php.
 	
-		; Copy the source script folder of this project into C:\Program Files\php
+		; Copy the source script folder of this project into C:\em\php
+		; Rename "this folder" to sc
 
         
 	- php.ini configuration
 	
 		; copy php.ini-recommended c:\windows\php.ini
-		; Edit: extension_dir = "c:\Program Files\PHP\ext"
+		; Edit: extension_dir = "c:\em\PHP\ext"
 		; Uncomment "php_gd2" in php.ini
 		; 
 	
@@ -30,7 +31,7 @@ This chapter explains how to test.
 
 	TEST 1)
 	
-		RUN "sc" in C:\Program Fils\PHP\sc
+		RUN "sc" in C:\em\PHP\sc
 		
 		
 		and see if it's working.
@@ -86,9 +87,9 @@ TASK SCHEDULER
 						        Select:  Configure for Windows 7
 						        
 						Action:
-						        Program/script: c:\php\sc\hstart.exe
-						        Add argument: /NOCONSOLE "c:\php\php.exe c:\php\sc\sc.php"
-						        Start in: c:\php\sc
+						        Program/script: c:\em\php\sc\hstart.exe
+						        Add argument: /NOCONSOLE "c:\em\php\php.exe c:\em\php\sc\sc.php"
+						        Start in: c:\em\php\sc
 						        
 						
 						Trigger:

@@ -1,1 +1,1 @@
-"c:\Program Files\php\sc\hstart.exe" /NOCONSOLE "c:\Program Files\php\php.exe c:\Program Files\php\sc\sc.php"
+"c:\em\php\sc\hstart.exe" /NOCONSOLE "c:\em\php\php.exe c:\em\php\sc\sc.php"

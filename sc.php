@@ -10,12 +10,14 @@
 
 */
 // $username = "jaehosong";            // Computer Owner Name. You must change it every computer.
+date_default_timezone_set( 'Asia/Manila' );
+
 $username = gethostname();
 
 
 //
 $ymdhi = date("YmdHi");             // Time. (yymmddhhii). It is part of file name.
-$image_quality = 50;                // jpg image quality. 100 is the beste.
+$image_quality = 30;                // jpg image quality. 100 is the beste.
 $filename = "{$username}_{$ymdhi}.jpg";
 
 
