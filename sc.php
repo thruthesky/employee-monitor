@@ -1,6 +1,11 @@
 <?php
 /**
  *
+ * @file sc.php
+ * @desc
+ *		This is a screen capture php script.
+ * @date last updated May 20, 2015 by Song JaeHo - Changed FTP to SFTP.
+ *
  *
  */
 //==============================================================================
@@ -51,45 +56,33 @@ log_message("Image captured: $src");
  *
  *
  */
-$dst = "$filename";
+$dst = "www/employee/$filename";
 // FTP connect
-$conn_id = ftp_connect($ftp_server);
-$login_result = ftp_login($conn_id, $ftp_id, $ftp_password);
+//$conn_id = ftp_connect($ftp_server);
+//$login_result = ftp_login($conn_id, $ftp_id, $ftp_password);
+
+// SFTP connection
+$conn = ssh2_connect($ftp_server, 22);
+if ( ! $conn ) { log_message("ERROR: ssh2_connect() failed"); exit; }
+else log_message("ssh2_connect() : success");
+
+$login_result = ssh2_auth_password($conn, $ftp_id, $ftp_password);
+if ( ! $login_result ) {  log_message("ERROR: ssh2_auth_password() failed"); exit; }
+else log_message("ssh2_auth_password() : success");
 
 
-// passive mode
-ftp_pasv($conn_id, true);
 
-// check connection
-if ((!$conn_id) || (!$login_result)) { 
-	log_message("ERROR: failed on connection");
-} else {
-	
-    // connection Success
-	log_message("Connected to the ftp server");
-	
-	// try to change the directory to somedir
-	if (ftp_chdir($conn_id, $ftp_data_folder)) {
-		log_message("Current directory is now: " . ftp_pwd($conn_id));
-	} else {
-		log_message("ERROR: Couldn't change directory : $ftp_data_folder");
-		return;
-	}
+ssh2_scp_send($conn, $src, $dst, 0644);
+if ( ! $login_result ) {  log_message("ERROR: ssh2_scp_send() failed"); exit; }
+else log_message("ssh2_scp_send() : success");
 
-	
-	//
-    $upload = ftp_put($conn_id, $dst, $src, FTP_BINARY);
-	
-    // check upload status
-    if (!$upload) { 
-        // failed
-        log_message("Failed upload: $dst");
-    } else {
-        // success
-        log_message("Success upload: $dst");
-    }
-    ftp_close($conn_id);
-}
+
+
+
+
+
+
+
 
 
 
@@ -100,7 +93,8 @@ function log_message($content)
 		return false;
 	}
 	
-	if (fwrite($handle, $content . "\n") === FALSE) {
+	$content .= "\r\n";
+	if (fwrite($handle, $content) === FALSE) {
 		return false;
 	}
 	fclose($handle);
